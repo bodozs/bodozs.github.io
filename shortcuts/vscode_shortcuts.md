@@ -6,19 +6,20 @@
 |   ⌘⇧`E`    | switch the focus between Explorer and Editor |
 |     ⌘↓     | open the selected file from Explorer         |
 |    ^⌘→     | move editor to Split View (next group)       |
-| ⌘`K` ⌘`M`  | Toggle maximize editor group                 |
+| ⌘`K` ⌘`M`  | toggle maximize editor group                 |
 |    ⌘`1`    | select the first editor group                |
 |    ⌘`2`    | select the second editor group               |
 | ⇧⌥↑ or ⇧⌥↓ | copy/duplicate current line up or down       |
 |   ⇧⌘`/`    | go to matching bracket                       |
+|   ⇧⌘`v`    | toggle markdown preview                      |
 
 ## Suggestions
 
 |  Hotkey  | Function               |
 | :------: | :--------------------- |
-|  ⌥`ESC`  | Trigger suggest        |
-|   ⌥`i`   | Trigger AI Intelisense |
-| ^`Space` | Trigger Intelisense    |
+|  ⌥`ESC`  | trigger suggest        |
+|   ⌥`i`   | trigger AI Intelisense |
+| ^`Space` | trigger Intelisense    |
 
 ## Multi cursor
 
