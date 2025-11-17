@@ -47,3 +47,6 @@
 | Hotkey | Function                |
 | :----: | :---------------------- |
 | ⌥⌘`F`  | search in Explorer view |
+| <kbd>⇧ Shift</kbd> + <kbd>⌘ Command</kbd> + <kbd>F</kbd> | search in Explorer view |
+| <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>F</kbd> | search in Explorer view |
+| <kbd>⇧⌘F</kbd> | search in Explorer view |
