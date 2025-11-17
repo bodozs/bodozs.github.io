@@ -1,6 +1,6 @@
 # VSCode
 |   Hotkey   | Function                                     |
-| :-------- | :------------------------------------------- |
+|  :---:  | :--- |
 |   ⌘⌥`F`    | search in Explorer                           |
 |   ⌘⇧`E`    | switch the focus between Explorer and Editor |
 |     ⌘↓     | open the selected file from Explorer         |
@@ -13,14 +13,14 @@
 
 ## Suggestions
 |  Hotkey  | Function               |
-| :------: | :--------------------- |
+| :---: | :--- |
 |  ⌥`ESC`  | Trigger suggest        |
 |   ⌥`i`   | Trigger AI Intelisense |
 | ^`Space` | Trigger Intelisense    |
 
 ## Multi cursor
 |   Hotkey   | Function                                    |
-| :--------: | :------------------------------------------ |
+| :-------- | :------------------------------------------ |
 |  ⌥ click   | insert cursor                               |
 | ⌥⌘↑ or ⌥⌘↓ | insert cursor above or below                |
 |   ⇧⌥`i`    | add cursor to the end of each selected line |
