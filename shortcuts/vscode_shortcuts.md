@@ -1,27 +1,42 @@
-- VSCode
-	- Cmd-Option-F  — search in Explorer
-	- Cmd-Shift-E —  switch the focus between Explorer and Editor
-	- Cmd-down — open the selected file from Explorer
-	- Ctrl + Cmd + -> — move editor to Split View (next group)
-	- Cmd K Cmd M - Toggle maximize editor group
-        - Cmd + 1 — select the first editor group
-        - Cmd + 2 — select the second editor group
-	- Cmd + Down arrow -> open file selected in Explorer
-	- Shift + Option + arrow -> copy/duplicate current line up or down
-	- Shift + Command + / -> go to matching bracket
+# VSCode
+|   Hotkey   | Function                                     |
+| :--------: | :------------------------------------------- |
+|   ⌘⌥`F`    | search in Explorer                           |
+|   ⌘⇧`E`    | switch the focus between Explorer and Editor |
+|     ⌘↓     | open the selected file from Explorer         |
+|    ^⌘→     | move editor to Split View (next group)       |
+| ⌘`K` ⌘`M`  | Toggle maximize editor group                 |
+|    ⌘`1`    | select the first editor group                |
+|    ⌘`2`    | select the second editor group               |
+| ⇧⌥↑ or ⇧⌥↓ | copy/duplicate current line up or down       |
+|   ⇧⌘`/`    | go to matching bracket                       |
 
-- VSCode suggestions
-	- ⌥ + ESC - Trigger suggest
-	- ⌥ + i - Trigger AI Intelisense
-- 
-- Multi cursor in VSCode
-	- Option + click - insert cursor
-	- Option + Cmd + arrow - insert cursor above or below
-	- Shift + Option + I - add cursor to the end of each selected line (capital i is the letter)
-- Working with files in VSCode
-	- Cmd + P - open file palette
-- Navigating back and forth
-	- ⌃ + -  navigate back
-	- ⌃ + ⇧ + - navigate forward
-- Search in Explorer (or side panel lists)
-	- ⌥⌘F - search in Explorer view
+## Suggestions
+|  Hotkey  | Function               |
+| :------: | :--------------------- |
+|  ⌥`ESC`  | Trigger suggest        |
+|   ⌥`i`   | Trigger AI Intelisense |
+| ^`Space` | Trigger Intelisense    |
+
+## Multi cursor
+|   Hotkey   | Function                                    |
+| :--------: | :------------------------------------------ |
+|  ⌥ click   | insert cursor                               |
+| ⌥⌘↑ or ⌥⌘↓ | insert cursor above or below                |
+|   ⇧⌥`i`    | add cursor to the end of each selected line |
+
+## Working with files
+| Hotkey | Function             |
+| :----: | :------------------- |
+|  ⌘`P`  | open file palette    |
+|  ⌘`T`  | open symbols palette |
+
+## Navigating back and forth
+| Hotkey | Function         |
+| :----: | :--------------- |
+|  ⌃`-`  | navigate back    |
+| ⌃⇧`-`  | navigate forward |
+## Search in Explorer (or side panel lists)
+| Hotkey | Function                |
+| :----: | :---------------------- |
+| ⌥⌘`F`  | search in Explorer view |
