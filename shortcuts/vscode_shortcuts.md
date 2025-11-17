@@ -1,6 +1,6 @@
 # VSCode
 |   Hotkey   | Function                                     |
-| :--------: | :------------------------------------------- |
+| :-------- | :------------------------------------------- |
 |   ⌘⌥`F`    | search in Explorer                           |
 |   ⌘⇧`E`    | switch the focus between Explorer and Editor |
 |     ⌘↓     | open the selected file from Explorer         |
