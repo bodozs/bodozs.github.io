@@ -5,3 +5,4 @@
 
 # Shortcuts
 * [VSCode](shortcuts/vscode_shortcuts.md)
+* [Other](shortcuts/other_shortcuts.md)
