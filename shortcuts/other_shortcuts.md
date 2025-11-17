@@ -1,19 +1,23 @@
 # Mac
+
 | Hotkey | Function                                                                                          |
 | :----: | :------------------------------------------------------------------------------------------------ |
 |   ⌘?   | search in menus of an app. <br> In Safari it searches in bookmarks as well (Help menu search box) |
   
 # Cleanshot
+
 | Hotkey | Function        |
 | :----: | :-------------- |
 |  ⇧⌘4   | screenshot area |
 
 # Confluence wiki
+
 | Hotkey | Function               |
 | :----: | :--------------------- |
 | {{ }}  | Inline code formatting |
   
 # Teams
+
 | Hotkey | Function                |
 | :----: | :---------------------- |
 |   ⌘G   | go to a chat or channel |
@@ -28,22 +32,26 @@
 |   ⌘/   | Open command box        |
   
 ## Teams - Copilot chat
+
 | Hotkey  | Function                          |
 | :-----: | :-------------------------------- |
 | ⇧⌥Enter | add line break in copilot chat    |
 |  ⇧⌥⌘A   | select content of the chat window |
   
 # iTerm2
+
 | Hotkey | Function                     |
 | :----: | :--------------------------- |
 |  ⌘⇧O   | Open quickly command palette |
   
 # Internet explorer
+
 | Hotkey | Function                                                       |
 | :----: | :------------------------------------------------------------- |
 |   ⌘L   | go to address bar, then type @ to search between the open tabs |
 
-# Write special characters  
+# Write special characters
+
 With option key
 - Apple/Command: 2318 ⌘ 
 - Alt/Option: 2325 ⌥ 
