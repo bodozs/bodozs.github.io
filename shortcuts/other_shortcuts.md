@@ -59,3 +59,12 @@ With option key
 - Delete: 232B ⌫ 
 - Control: 2303 ⌃ 
 - Apple Logo: F8FF or Option-Shift-K 
+- ⮕ U+2B95
+- ⬅ U+2B05
+- ⬆ U+2B06
+- ⬇ U+2B07
+
+# Tools
+- [find unicode characters](https://altcodeunicode.com/alt-codes-arrow-keyboard-arrow-dingbat-arrow-symbols/)
+- [Keyboard shortcut generator 1](https://folge.me/tools/keyboard-shortcut-generator)
+- [Keyboard shortcut generator 2](https://rapidtoolset.com/en/tool/keyboard-shortcut-image-generator)
