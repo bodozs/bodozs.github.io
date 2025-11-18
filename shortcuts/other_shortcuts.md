@@ -12,9 +12,9 @@
 
 # Confluence wiki
 
-| Hotkey | Function               |
-| :----: | :--------------------- |
-| {{ }}  | Inline code formatting |
+|  Hotkey   | Function               |
+| :-------: | :--------------------- |
+| \{\{ \}\} | Inline code formatting |
   
 # Teams
 
