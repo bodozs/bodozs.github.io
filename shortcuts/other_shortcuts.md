@@ -3,6 +3,7 @@
 | Hotkey | Function                                                                                          |
 | :----: | :------------------------------------------------------------------------------------------------ |
 |   ⌘?   | search in menus of an app. <br> In Safari it searches in bookmarks as well (Help menu search box) |
+|  Fn F  | toggle full screen                                                                                |
   
 # Cleanshot
 
@@ -49,6 +50,11 @@
 | Hotkey | Function                                                       |
 | :----: | :------------------------------------------------------------- |
 |   ⌘L   | go to address bar, then type @ to search between the open tabs |
+|   @    | choose search filter in address bar                            |
+|   %    | search between open tabs in address bar                        |
+|   ^    | search history in address bar                                  |
+|   *    | search favorites in address bar                                |
+
 
 # Write special characters
 
