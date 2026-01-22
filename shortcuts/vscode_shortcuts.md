@@ -48,3 +48,9 @@
 | Hotkey | Function                |
 | :----: | :---------------------- |
 | ⌥⌘`F`  | search in Explorer view |
+
+## Formatting
+
+| Hotkey | Function                |
+| :----: | :---------------------- |
+| ⌥⇧`F`  | format document or selection |
