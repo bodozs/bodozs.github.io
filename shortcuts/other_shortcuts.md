@@ -4,6 +4,14 @@
 | :----: | :------------------------------------------------------------------------------------------------ |
 |   ⌘?   | search in menus of an app. <br> In Safari it searches in bookmarks as well (Help menu search box) |
 |  Fn F  | toggle full screen                                                                                |
+|  /⌥0   | 0 on Hungarian (qwertz) keyboard                                                                  |
+|  ⌥0    | 0 on Hungarian (qwerty) keyboard                                                                  |
+
+[Extended Accent Codes for Mac](https://sites.psu.edu/symbolcodes/mac/codemacext/)
+* ABC Extended has zero in the normal place and can make all the Hungarian special characters via option dead keys.
+* Example 1: To input the letter ó, hold down the Option key, then the E key. Release both keys then type lowercase o.
+* Example 2: To input the letter Ó, hold down the Option key, then the E key. Release both keys then type capital O.
+
   
 # Cleanshot
 
