@@ -40,13 +40,32 @@
 |   ⌘E   | Go to search bar        |
 |   ⌘/   | Open command box        |
   
+## [Marta](https://marta.sh/docs/)
+
+| Hotkey  | Function                          |
+| :-----: | :-------------------------------- |
+| ⌥0 | Hierarchy    |
+| ⌥1 | Volumes    |
+| ⌥2 | [Favorites](https://marta.sh/docs/navigation/favorites/)    |
+| ⌥3 | Recent locations    |
+| ⇧⌘P | Command palette |
+| ⌘G | Go to path |
+| ⌘O | [Open embedded terminal](https://marta.sh/docs/advanced/terminal/) |
+| ⌘P | [Lookup](https://marta.sh/docs/actions/lookup/) |
+| ⌥⌘P | Lookup here |
+|  | [Flatten](https://marta.sh/docs/actions/flatten/) |
+|  | [Analyse disk usage](https://marta.sh/docs/actions/disk-usage/) |
+|  | [Modifying key bindings](https://marta.sh/docs/configuration/hotkeys/) |
+|  | [Tutorial](https://marta.sh/docs/other/tutorial/) |
+
+
 ## Teams - Copilot chat
 
 | Hotkey  | Function                          |
 | :-----: | :-------------------------------- |
 | ⇧⌥Enter | add line break in copilot chat    |
 |  ⇧⌥⌘A   | select content of the chat window |
-  
+
 # iTerm2
 
 | Hotkey | Function                     |
