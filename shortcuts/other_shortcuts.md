@@ -62,14 +62,15 @@
 
 ### Marta Quick search
 Use Quick Search for quick navigation. Type a few letters of the file name, and the file will be highlighted automatically.
-- Searh for substring in file name: `File↵ Name contains LLD↵`
-- See full list of filter possibilities in [Lookup](https://marta.sh/docs/actions/lookup/) documentation
+- To search by a substring, prefix your query with `\`: `\ser`.
+- To search by a regular expression, use `/`: `/s*r`.
+- Press ⎋ to cancel Quick Search.
 
 ### Marta Lookup
 - `⌘P` opens the "Look up" popup in which you can search for any file on your Mac by its attributes.
 - `⌘⌥P` does the same, but for the current directory.
-- Start your query with `f:` to include files in results.
-- Start with `@:` to search for substring instead of a prefix.
+- Searh for substring in file name: `File↵ Name contains LLD↵`
+- See full list of filter possibilities in [Lookup](https://marta.sh/docs/actions/lookup/) documentation
 
 ### Marta [blog](https://marta.sh/blog/)
 
