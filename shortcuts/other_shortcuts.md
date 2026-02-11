@@ -49,6 +49,8 @@
 | ⌥2 | [Favorites](https://marta.sh/docs/navigation/favorites/)    |
 | ⌥3 | Recent locations    |
 | ⇧⌘P | Command palette |
+| ⌘T | Add a tab |
+| ⌘N | New window |
 | ⌘G | Go to path |
 | ⌘O | [Open embedded terminal](https://marta.sh/docs/advanced/terminal/) |
 | ⌘P | [Lookup](https://marta.sh/docs/actions/lookup/) |
@@ -58,6 +60,18 @@
 |  | [Modifying key bindings](https://marta.sh/docs/configuration/hotkeys/) |
 |  | [Tutorial](https://marta.sh/docs/other/tutorial/) |
 
+### Marta Quick search
+Use Quick Search for quick navigation. Type a few letters of the file name, and the file will be highlighted automatically.
+- Searh for substring in file name: `File↵ Name contains LLD↵`
+- See full list of filter possibilities in [Lookup](https://marta.sh/docs/actions/lookup/) documentation
+
+### Marta Lookup
+- `⌘P` opens the "Look up" popup in which you can search for any file on your Mac by its attributes.
+- `⌘⌥P` does the same, but for the current directory.
+- Start your query with `f:` to include files in results.
+- Start with `@:` to search for substring instead of a prefix.
+
+### Marta [blog](https://marta.sh/blog/)
 
 ## Teams - Copilot chat
 
