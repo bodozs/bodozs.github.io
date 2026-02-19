@@ -1,5 +1,6 @@
 # VSCode
 
+## Work with panels
 |   Hotkey   | Function                                     |
 | :--------: | :------------------------------------------- |
 |   ⌘⌥`F`    | search in Explorer                           |
@@ -9,6 +10,11 @@
 | ⌘`K` ⌘`M`  | toggle maximize editor group                 |
 |    ⌘`1`    | select the first editor group                |
 |    ⌘`2`    | select the second editor group               |
+
+## Line operations
+|   Hotkey   | Function                                     |
+| :--------: | :------------------------------------------- |
+|  ⌥↑ or ⌥↓  | move current line up or down                 |
 | ⇧⌥↑ or ⇧⌥↓ | copy/duplicate current line up or down       |
 |   ⇧⌘`/`    | go to matching bracket                       |
 |   ⇧⌘`v`    | toggle markdown preview                      |
