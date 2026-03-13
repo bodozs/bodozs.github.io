@@ -49,11 +49,14 @@
 |  ⌃`-`  | navigate back    |
 | ⌃⇧`-`  | navigate forward |
 
-## Search in Explorer (or side panel lists)
+## Explorer / side panel
 
 | Hotkey | Function                |
 | :----: | :---------------------- |
-| ⌥⌘`F`  | search in Explorer view |
+| ⌘`0`  | focus on side panel  |
+| ⌘⇧`E`  | focus on side Explorer  |
+| ⌘`Left arrow`  | [collapse all folders](https://bobbyhadz.com/blog/collapse-all-folders-in-explorer-in-vscode)  |
+| ⌥⌘`F`  | search in Explorer view (or selected side panel)|
 
 ## Formatting
 
