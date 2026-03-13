@@ -3,13 +3,21 @@
 ## Work with panels
 |   Hotkey   | Function                                     |
 | :--------: | :------------------------------------------- |
-|   ⌘⌥`F`    | search in Explorer                           |
-|   ⌘⇧`E`    | switch the focus between Explorer and Editor |
-|     ⌘↓     | open the selected file from Explorer         |
 |    ^⌘→     | move editor to Split View (next group)       |
 | ⌘`K` ⌘`M`  | toggle maximize editor group                 |
 |    ⌘`1`    | select the first editor group                |
 |    ⌘`2`    | select the second editor group               |
+
+## Explorer / side panel
+[Navigate in the file tree with keyboard](https://www.tutorialpedia.org/blog/vscode-navigate-in-the-file-tree-with-the-keyboard/)
+| Hotkey | Function                |
+| :----: | :---------------------- |
+| ⌘`0`  | focus on side panel  |
+| ⌘⇧`E`  | focus on side Explorer  |
+| → / ← | expand or collapse folder |
+| ⌘←  | [collapse all folders](https://bobbyhadz.com/blog/collapse-all-folders-in-explorer-in-vscode)  |
+| ⌥⌘`F`  | search in Explorer view (or selected side panel)|
+|     ⌘↓     | open the selected file from Explorer         |
 
 ## Line operations
 |   Hotkey   | Function                                     |
@@ -48,15 +56,6 @@
 | :----: | :--------------- |
 |  ⌃`-`  | navigate back    |
 | ⌃⇧`-`  | navigate forward |
-
-## Explorer / side panel
-
-| Hotkey | Function                |
-| :----: | :---------------------- |
-| ⌘`0`  | focus on side panel  |
-| ⌘⇧`E`  | focus on side Explorer  |
-| ⌘`Left arrow`  | [collapse all folders](https://bobbyhadz.com/blog/collapse-all-folders-in-explorer-in-vscode)  |
-| ⌥⌘`F`  | search in Explorer view (or selected side panel)|
 
 ## Formatting
 
