@@ -9,8 +9,9 @@
 |    ⌘`2`    | select the second editor group               |
 
 ## Explorer / side panel
-[Navigate in the file tree with keyboard](https://www.tutorialpedia.org/blog/vscode-navigate-in-the-file-tree-with-the-keyboard/)
-[Advanced tree navigation](https://code.visualstudio.com/docs/getstarted/userinterface#_advanced-tree-navigation)
+* [Navigate in the file tree with keyboard](https://www.tutorialpedia.org/blog/vscode-navigate-in-the-file-tree-with-the-keyboard/)
+* [Advanced tree navigation](https://code.visualstudio.com/docs/getstarted/userinterface#_advanced-tree-navigation)
+
 | Hotkey | Function                |
 | :----: | :---------------------- |
 | ⌘`0`  | focus on side panel  |
