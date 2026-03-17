@@ -1,6 +1,7 @@
 # VSCode
 
 ## Work with panels
+
 |   Hotkey   | Function                                     |
 | :--------: | :------------------------------------------- |
 |    ^⌘→     | move editor to Split View (next group)       |
@@ -22,6 +23,7 @@
 |     ⌘↓     | open the selected file from Explorer         |
 
 ## Line operations
+
 |   Hotkey   | Function                                     |
 | :--------: | :------------------------------------------- |
 |  ⌥↑ or ⌥↓  | move current line up or down                 |
