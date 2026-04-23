@@ -17,8 +17,10 @@
       --primary: #2f80ed;
       --primary-2: #54c3a8;
       --success: #1f9d6b;
-      --danger: #d9536f;
-      --danger-soft: #fff1f4;
+      --danger: #c96a7c;
+      --danger-text: #a34f61;
+      --danger-soft: #fff5f7;
+      --danger-border: #f2d5dc;
       --warning: #b7791f;
       --warning-soft: #fff8e6;
       --shadow: 0 12px 30px rgba(46, 99, 155, 0.09);
@@ -200,7 +202,7 @@
       font-size: 0.92rem;
       font-weight: 700;
       cursor: pointer;
-      transition: transform 0.14s ease, box-shadow 0.14s ease, opacity 0.15s ease, background 0.2s ease;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, opacity 0.15s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
       min-height: 40px;
       white-space: nowrap;
     }
@@ -234,8 +236,8 @@
 
     .btn-danger {
       background: var(--danger-soft);
-      color: #b23f57;
-      border: 1px solid #f1c2cb;
+      color: var(--danger-text);
+      border: 1px solid var(--danger-border);
     }
 
     .btn-warning {
@@ -557,8 +559,20 @@
       border-color: var(--border);
     }
 
+    .menu-divider {
+      margin: 6px 4px;
+      border-top: 1px solid #e8eef5;
+    }
+
     .menu button.menu-danger {
-      color: #b23f57;
+      color: var(--danger-text);
+      background: var(--danger-soft);
+      border-color: var(--danger-border);
+    }
+
+    .menu button.menu-danger:hover {
+      background: #fff0f4;
+      border-color: #ebc8d1;
     }
 
     @media (max-width: 1020px) {
@@ -686,8 +700,9 @@
                   </button>
                   <div id="manageClassMenu" class="menu" role="menu" aria-label="Manage class">
                     <button id="renameClassBtn" type="button" role="menuitem">Rename Class</button>
-                    <button id="deleteClassBtn" type="button" role="menuitem" class="menu-danger">Delete Class</button>
                     <button id="clearParticipantsBtn" type="button" role="menuitem">Remove All Students</button>
+                    <div class="menu-divider" aria-hidden="true"></div>
+                    <button id="deleteClassBtn" type="button" role="menuitem" class="menu-danger">Delete Class</button>
                   </div>
                 </div>
               </div>
@@ -933,7 +948,6 @@
         return copy;
       }
 
-      // Choose balanced group sizes near the preferred size, without leaving one student alone.
       function computeGroupSizes(total, preferredSize) {
         if (total < 2) return [];
         if (total === 2) return [2];
@@ -969,7 +983,6 @@
         return [3, ...new Array((total - 3) / 2).fill(2)];
       }
 
-      // Lower scores are better: fewer repeated classmates, plus a little randomness.
       function scoreGroups(groups) {
         let repeatedScore = 0;
         let higherRepeatPenalty = 0;
@@ -988,7 +1001,6 @@
         return repeatedScore * 3 + higherRepeatPenalty * 1.5 + randomNoise;
       }
 
-      // Try many groupings, then choose one of the stronger options to keep variety.
       function generateBalancedGroups(names, preferredSize) {
         const sizes = computeGroupSizes(names.length, preferredSize);
         const attempts = 350;
