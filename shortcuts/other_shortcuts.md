@@ -6,6 +6,8 @@
 |  Fn F  | toggle full screen                                                                                |
 |  ^⌥0   | 0 on Hungarian (qwertz) keyboard                                                                  |
 |  ⌥0    | 0 on Hungarian (qwerty) keyboard                                                                  |
+|  ⇧⌘5   | screenshot area                                                                                   |
+
 
 [Extended Accent Codes for Mac](https://sites.psu.edu/symbolcodes/mac/codemacext/)
 * ABC Extended has zero in the normal place and can make all the Hungarian special characters via option dead keys.
