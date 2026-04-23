@@ -18,9 +18,11 @@
       --primary-2: #54c3a8;
       --success: #1f9d6b;
       --danger: #c96a7c;
-      --danger-text: #a34f61;
-      --danger-soft: #fff5f7;
-      --danger-border: #f2d5dc;
+      --danger-text: #9a4d5c;
+      --danger-soft: #f8fbff;
+      --danger-hover: #fff8fa;
+      --danger-border: #edcfd6;
+      --danger-border-hover: #e5bbc5;
       --warning: #b7791f;
       --warning-soft: #fff8e6;
       --shadow: 0 12px 30px rgba(46, 99, 155, 0.09);
@@ -236,8 +238,15 @@
 
     .btn-danger {
       background: var(--danger-soft);
-      color: var(--danger-text);
+      color: var(--text);
       border: 1px solid var(--danger-border);
+    }
+
+    .btn-danger:hover,
+    .btn-danger:focus {
+      background: var(--danger-hover);
+      color: var(--danger-text);
+      border-color: var(--danger-border-hover);
     }
 
     .btn-warning {
@@ -565,14 +574,16 @@
     }
 
     .menu button.menu-danger {
-      color: var(--danger-text);
+      color: var(--text);
       background: var(--danger-soft);
       border-color: var(--danger-border);
     }
 
-    .menu button.menu-danger:hover {
-      background: #fff0f4;
-      border-color: #ebc8d1;
+    .menu button.menu-danger:hover,
+    .menu button.menu-danger:focus {
+      color: var(--danger-text);
+      background: var(--danger-hover);
+      border-color: var(--danger-border-hover);
     }
 
     @media (max-width: 1020px) {
