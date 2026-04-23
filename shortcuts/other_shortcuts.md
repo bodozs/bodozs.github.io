@@ -4,7 +4,7 @@
 | :----: | :------------------------------------------------------------------------------------------------ |
 |   ⌘?   | search in menus of an app. <br> In Safari it searches in bookmarks as well (Help menu search box) |
 |  Fn F  | toggle full screen                                                                                |
-|  /⌥0   | 0 on Hungarian (qwertz) keyboard                                                                  |
+|  ^⌥0   | 0 on Hungarian (qwertz) keyboard                                                                  |
 |  ⌥0    | 0 on Hungarian (qwerty) keyboard                                                                  |
 
 [Extended Accent Codes for Mac](https://sites.psu.edu/symbolcodes/mac/codemacext/)
