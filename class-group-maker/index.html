@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Student Groups</title>
+  <title></title>
   <style>
     :root{
       --bg: #f6fbff;
@@ -101,6 +101,39 @@
 
     .pill strong {
       color: #23405e;
+    }
+
+    .language-pill {
+      align-items: center;
+      display: inline-flex;
+      gap: 4px;
+      padding: 0;
+      background: transparent;
+      border-color: transparent;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .language-pill select {
+      min-height: 26px;
+      padding: 3px 24px 3px 8px;
+      border-radius: 999px;
+      border-color: transparent;
+      background-color: transparent;
+      background-position: right 7px center;
+      background-size: 12px 12px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 650;
+      box-shadow: none;
+    }
+
+    .language-pill select:hover,
+    .language-pill select:focus {
+      background-color: #f4f9ff;
+      border-color: var(--border);
+      color: #24435f;
     }
 
     .main-grid {
@@ -641,12 +674,16 @@
   <div class="app">
     <section class="topbar">
       <div>
-        <h1>Create Student Groups</h1>
-        <p>Choose a class, mark who is away, then make groups.</p>
+        <h1 data-i18n="app.title"></h1>
+        <p data-i18n="app.subtitle"></p>
       </div>
       <div class="topbar-stats">
-        <div class="pill">Students: <strong id="participantCount">0</strong></div>
-        <div class="pill">Here today: <strong id="presentCount">0</strong></div>
+        <div class="pill"><span data-i18n="stats.students"></span> <strong id="participantCount">0</strong></div>
+        <div class="pill"><span data-i18n="stats.hereToday"></span> <strong id="presentCount">0</strong></div>
+        <label class="pill language-pill" for="languageSelect">
+          <span data-i18n="language.label"></span>
+          <select id="languageSelect"></select>
+        </label>
       </div>
     </section>
 
@@ -654,22 +691,17 @@
       <section class="stack">
         <section class="panel">
           <div class="panel-inner">
-            <h2>Today’s Groups</h2>
+            <h2 data-i18n="groups.today.title"></h2>
 
             <div class="group-toolbar">
               <div class="field-row">
-                <label for="groupSize" class="compact-label">Group size</label>
-                <select id="groupSize" aria-label="Group size">
-                  <option value="2">2 students</option>
-                  <option value="3" selected>3 students</option>
-                  <option value="4">4 students</option>
-                  <option value="5">5 students</option>
-                  <option value="6">6 students</option>
+                <label for="groupSize" class="compact-label" data-i18n="groups.size.label"></label>
+                <select id="groupSize" data-i18n-aria-label="groups.size.label">
                 </select>
               </div>
 
-              <button id="generateBtn" class="btn-success" type="button">Make Groups</button>
-              <button id="clearCurrentBtn" class="btn-secondary" type="button">Clear Groups</button>
+              <button id="generateBtn" class="btn-success" type="button" data-i18n="groups.make.button"></button>
+              <button id="clearCurrentBtn" class="btn-secondary" type="button" data-i18n="groups.clear.button"></button>
             </div>
 
             <div id="message" class="message info" aria-live="polite"></div>
@@ -681,11 +713,11 @@
           <div class="panel-inner">
             <details class="secondary-panel">
               <summary>
-                <span id="historyTitle">Earlier groups (0)</span>
+                <span id="historyTitle"></span>
               </summary>
               <div class="secondary-content">
                 <div class="mini-toolbar">
-                  <button id="resetHistoryBtn" class="btn-warning" type="button">Clear Earlier Groups</button>
+                  <button id="resetHistoryBtn" class="btn-warning" type="button" data-i18n="groups.history.clear"></button>
                 </div>
 
                 <div id="historyContainer"></div>
@@ -698,32 +730,31 @@
       <section class="stack">
         <section class="panel">
           <div class="panel-inner">
-            <h2>Class and Students</h2>
+            <h2 data-i18n="classStudents.title"></h2>
 
             <div class="field-row" style="margin-bottom: 10px;">
-              <label for="classSelect" class="compact-label">Class</label>
+              <label for="classSelect" class="compact-label" data-i18n="class.label"></label>
               <div class="select-row">
-                <select id="classSelect" aria-label="Class"></select>
+                <select id="classSelect" data-i18n-aria-label="class.label"></select>
 
                 <div class="menu-wrap">
-                  <button id="manageClassBtn" class="btn-manage" type="button" aria-haspopup="menu" aria-expanded="false">
-                    Manage Class
+                  <button id="manageClassBtn" class="btn-manage" type="button" aria-haspopup="menu" aria-expanded="false" data-i18n="class.manage.button">
                   </button>
-                  <div id="manageClassMenu" class="menu" role="menu" aria-label="Manage class">
-                    <button id="renameClassBtn" type="button" role="menuitem">Rename Class</button>
-                    <button id="clearParticipantsBtn" type="button" role="menuitem">Remove All Students</button>
+                  <div id="manageClassMenu" class="menu" role="menu" data-i18n-aria-label="class.manage.ariaLabel">
+                    <button id="renameClassBtn" type="button" role="menuitem" data-i18n="class.manage.rename"></button>
+                    <button id="clearParticipantsBtn" type="button" role="menuitem" data-i18n="class.manage.removeAll"></button>
                     <div class="menu-divider" aria-hidden="true"></div>
-                    <button id="deleteClassBtn" type="button" role="menuitem" class="menu-danger">Delete Class</button>
+                    <button id="deleteClassBtn" type="button" role="menuitem" class="menu-danger" data-i18n="class.manage.delete"></button>
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="field-row">
-              <label for="nameInput" class="compact-label">Add a student</label>
+              <label for="nameInput" class="compact-label" data-i18n="student.add.label"></label>
               <div class="input-row">
-                <input id="nameInput" type="text" placeholder="Student name" maxlength="80" />
-                <button id="addBtn" class="btn-primary" type="button">Add</button>
+                <input id="nameInput" type="text" data-i18n-placeholder="student.name.placeholder" maxlength="80" />
+                <button id="addBtn" class="btn-primary" type="button" data-i18n="student.add.button"></button>
               </div>
             </div>
 
@@ -735,14 +766,14 @@
           <div class="panel-inner">
             <details class="secondary-panel">
               <summary>
-                <span>Add a New Class</span>
+                <span data-i18n="class.new.title"></span>
               </summary>
               <div class="secondary-content">
                 <div class="field-row">
-                  <label for="newClassInput" class="compact-label">New class name</label>
+                  <label for="newClassInput" class="compact-label" data-i18n="class.new.label"></label>
                   <div class="input-row">
-                    <input id="newClassInput" type="text" placeholder="New class name" maxlength="80" />
-                    <button id="createClassBtn" class="btn-primary" type="button">Add Class</button>
+                    <input id="newClassInput" type="text" data-i18n-placeholder="class.new.placeholder" maxlength="80" />
+                    <button id="createClassBtn" class="btn-primary" type="button" data-i18n="class.new.button"></button>
                   </div>
                 </div>
               </div>
@@ -756,8 +787,263 @@
   <script>
     (() => {
       const STORAGE_KEY = "teacher-group-maker-data-v2";
+      const LANGUAGE_STORAGE_KEY = "teacher-group-maker-language";
+      const GROUP_SIZE_OPTIONS = [2, 3, 4, 5, 6];
+
+      const translations = {
+        en: {
+          language: {
+            name: "English",
+            shortName: "English",
+            label: "Language"
+          },
+          app: {
+            title: "Create Student Groups",
+            subtitle: "Choose a class, mark who is away, then make groups."
+          },
+          stats: {
+            students: "Students:",
+            hereToday: "Here today:"
+          },
+          classStudents: {
+            title: "Class and Students"
+          },
+          class: {
+            label: "Class",
+            defaultName: "Class 1",
+            migratedName: "My Class",
+            changed: "Class changed.",
+            deleted: "Class deleted.",
+            keepOne: "Keep at least one class.",
+            nameUpdated: "Class name updated.",
+            ready: "“{name}” is ready.",
+            validation: {
+              enterName: "Please enter a class name.",
+              duplicateName: "That class name is already in use."
+            },
+            prompt: {
+              rename: "New name for this class:"
+            },
+            confirm: {
+              delete: "Delete the class “{name}”?"
+            },
+            manage: {
+              button: "Manage Class",
+              ariaLabel: "Manage class",
+              rename: "Rename Class",
+              removeAll: "Remove All Students",
+              delete: "Delete Class"
+            },
+            new: {
+              title: "Add a New Class",
+              label: "New class name",
+              placeholder: "New class name",
+              button: "Add Class"
+            }
+          },
+          student: {
+            add: {
+              label: "Add a student",
+              button: "Add",
+              success: "Added {name}."
+            },
+            name: {
+              placeholder: "Student name"
+            },
+            edit: {
+              button: "Edit",
+              prompt: "Edit student name:",
+              success: "Student name updated."
+            },
+            delete: {
+              button: "Delete",
+              confirm: "Remove {name} from this class?",
+              success: "{name} was removed."
+            },
+            attendance: {
+              away: "Away",
+              markHere: "Mark {name} here",
+              markAway: "Mark {name} away",
+              titleHere: "Mark here",
+              titleAway: "Mark away"
+            },
+            empty: "No students yet.",
+            removedAll: "All students removed.",
+            alreadyEmpty: "This class is already empty.",
+            validation: {
+              enterName: "Please enter a student name.",
+              duplicateName: "That student is already in this class.",
+              emptyName: "Name cannot be empty."
+            },
+            confirm: {
+              removeAll: "Remove all students from this class?"
+            }
+          },
+          groups: {
+            today: {
+              title: "Today’s Groups"
+            },
+            size: {
+              label: "Group size",
+              option: "{count} students"
+            },
+            make: {
+              button: "Make Groups"
+            },
+            clear: {
+              button: "Clear Groups",
+              success: "Groups cleared."
+            },
+            ready: "Groups are ready.",
+            empty: "No groups yet.",
+            groupLabel: "Group {number}",
+            validation: {
+              notEnough: "Not enough students are here to make groups.",
+              leavesOne: "These students cannot be grouped without leaving one student alone."
+            },
+            history: {
+              title: "Earlier groups ({count})",
+              clear: "Clear Earlier Groups",
+              empty: "No earlier groups yet.",
+              saved: "Saved groups",
+              confirmClear: "Clear earlier groups for this class?",
+              cleared: "Earlier groups cleared.",
+              nothingToClear: "There is nothing to clear yet."
+            }
+          },
+          status: {
+            ready: "Ready."
+          }
+        },
+        de: {
+          language: {
+            name: "Deutsch",
+            shortName: "Deutsch",
+            label: "Sprache"
+          },
+          app: {
+            title: "Gruppen erstellen",
+            subtitle: "Wähle eine Klasse, markiere abwesende Teilnehmende und bilde Gruppen."
+          },
+          stats: {
+            students: "Teilnehmende:",
+            hereToday: "Heute da:"
+          },
+          classStudents: {
+            title: "Klasse und Teilnehmende"
+          },
+          class: {
+            label: "Klasse",
+            defaultName: "Klasse 1",
+            migratedName: "Meine Klasse",
+            changed: "Klasse gewechselt.",
+            deleted: "Klasse gelöscht.",
+            keepOne: "Behalte mindestens eine Klasse.",
+            nameUpdated: "Klassenname aktualisiert.",
+            ready: "„{name}“ ist bereit.",
+            validation: {
+              enterName: "Bitte gib einen Klassennamen ein.",
+              duplicateName: "Dieser Klassenname wird schon verwendet."
+            },
+            prompt: {
+              rename: "Neuer Name für diese Klasse:"
+            },
+            confirm: {
+              delete: "Klasse „{name}“ löschen?"
+            },
+            manage: {
+              button: "Klasse verwalten",
+              ariaLabel: "Klasse verwalten",
+              rename: "Klasse umbenennen",
+              removeAll: "Alle Teilnehmenden entfernen",
+              delete: "Klasse löschen"
+            },
+            new: {
+              title: "Neue Klasse hinzufügen",
+              label: "Name der neuen Klasse",
+              placeholder: "Name der neuen Klasse",
+              button: "Klasse hinzufügen"
+            }
+          },
+          student: {
+            add: {
+              label: "Teilnehmende hinzufügen",
+              button: "Hinzufügen",
+              success: "{name} hinzugefügt."
+            },
+            name: {
+              placeholder: "Name"
+            },
+            edit: {
+              button: "Bearbeiten",
+              prompt: "Name bearbeiten:",
+              success: "Name aktualisiert."
+            },
+            delete: {
+              button: "Löschen",
+              confirm: "{name} aus dieser Klasse entfernen?",
+              success: "{name} wurde entfernt."
+            },
+            attendance: {
+              away: "Abwesend",
+              markHere: "{name} als anwesend markieren",
+              markAway: "{name} als abwesend markieren",
+              titleHere: "Anwesend markieren",
+              titleAway: "Abwesend markieren"
+            },
+            empty: "Noch keine Teilnehmenden.",
+            removedAll: "Alle Teilnehmenden entfernt.",
+            alreadyEmpty: "Diese Klasse ist schon leer.",
+            validation: {
+              enterName: "Bitte gib einen Namen ein.",
+              duplicateName: "Diese Person ist schon in dieser Klasse.",
+              emptyName: "Der Name darf nicht leer sein."
+            },
+            confirm: {
+              removeAll: "Alle Teilnehmenden aus dieser Klasse entfernen?"
+            }
+          },
+          groups: {
+            today: {
+              title: "Gruppen für heute"
+            },
+            size: {
+              label: "Gruppengröße",
+              option: "{count} Teilnehmende"
+            },
+            make: {
+              button: "Gruppen bilden"
+            },
+            clear: {
+              button: "Gruppen löschen",
+              success: "Gruppen gelöscht."
+            },
+            ready: "Gruppen sind fertig.",
+            empty: "Noch keine Gruppen.",
+            groupLabel: "Gruppe {number}",
+            validation: {
+              notEnough: "Es sind nicht genug Teilnehmende da, um Gruppen zu bilden.",
+              leavesOne: "Diese Teilnehmenden können nicht gruppiert werden, ohne dass eine Person allein bleibt."
+            },
+            history: {
+              title: "Frühere Gruppen ({count})",
+              clear: "Frühere Gruppen löschen",
+              empty: "Noch keine früheren Gruppen.",
+              saved: "Gespeicherte Gruppen",
+              confirmClear: "Frühere Gruppen für diese Klasse löschen?",
+              cleared: "Frühere Gruppen gelöscht.",
+              nothingToClear: "Es gibt noch nichts zu löschen."
+            }
+          },
+          status: {
+            ready: "Bereit."
+          }
+        }
+      };
 
       const state = {
+        language: "en",
+        message: null,
         data: {
           activeClassId: null,
           classes: {}
@@ -765,6 +1051,7 @@
       };
 
       const els = {
+        languageSelect: document.getElementById("languageSelect"),
         classSelect: document.getElementById("classSelect"),
         manageClassBtn: document.getElementById("manageClassBtn"),
         manageClassMenu: document.getElementById("manageClassMenu"),
@@ -787,6 +1074,66 @@
         historyContainer: document.getElementById("historyContainer"),
         historyTitle: document.getElementById("historyTitle")
       };
+
+      function getTranslationValue(key) {
+        const parts = key.split(".");
+        const localized = parts.reduce((value, part) => value?.[part], translations[state.language]);
+        return localized ?? parts.reduce((value, part) => value?.[part], translations.en);
+      }
+
+      function t(key, values = {}) {
+        const template = getTranslationValue(key) ?? key;
+        return String(template).replace(/\{(\w+)\}/g, (_, name) => {
+          return Object.prototype.hasOwnProperty.call(values, name) ? values[name] : `{${name}}`;
+        });
+      }
+
+      function loadLanguage() {
+        const saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+        state.language = translations[saved] ? saved : "en";
+      }
+
+      function saveLanguage() {
+        localStorage.setItem(LANGUAGE_STORAGE_KEY, state.language);
+      }
+
+      function applyTranslations() {
+        document.documentElement.lang = state.language;
+        document.title = t("app.title");
+
+        document.querySelectorAll("[data-i18n]").forEach(element => {
+          element.textContent = t(element.getAttribute("data-i18n"));
+        });
+
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+          element.setAttribute("placeholder", t(element.getAttribute("data-i18n-placeholder")));
+        });
+
+        document.querySelectorAll("[data-i18n-aria-label]").forEach(element => {
+          element.setAttribute("aria-label", t(element.getAttribute("data-i18n-aria-label")));
+        });
+
+        renderLanguageSelector();
+        renderGroupSizeOptions();
+        refreshMessage();
+      }
+
+      function renderLanguageSelector() {
+        const options = Object.keys(translations).map(code => `
+          <option value="${escapeHtml(code)}">${escapeHtml(translations[code].language.shortName || translations[code].language.name)}</option>
+        `).join("");
+
+        els.languageSelect.innerHTML = options;
+        els.languageSelect.value = state.language;
+      }
+
+      function renderGroupSizeOptions() {
+        const currentValue = els.groupSize.value || "3";
+        els.groupSize.innerHTML = GROUP_SIZE_OPTIONS.map(size => `
+          <option value="${size}">${escapeHtml(t("groups.size.option", { count: size }))}</option>
+        `).join("");
+        els.groupSize.value = GROUP_SIZE_OPTIONS.includes(Number(currentValue)) ? currentValue : "3";
+      }
 
       function createClassObject(name) {
         return {
@@ -826,6 +1173,16 @@
         els.message.className = `message ${type}`;
       }
 
+      function setMessageKey(key, type = "info", values = {}) {
+        state.message = { key, type, values };
+        setMessage(t(key, values), type);
+      }
+
+      function refreshMessage() {
+        if (!state.message) return;
+        setMessage(t(state.message.key, state.message.values), state.message.type);
+      }
+
       function saveState() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state.data));
       }
@@ -844,7 +1201,7 @@
           return false;
         }
 
-        const groupClass = createClassObject("My Class");
+        const groupClass = createClassObject(t("class.migratedName"));
         groupClass.preferredSize = oldPreferredSize >= 2 && oldPreferredSize <= 6 ? oldPreferredSize : 3;
         groupClass.participants = Array.isArray(oldParticipants)
           ? oldParticipants.map(name => ({ name: normalizeName(name), absent: false })).filter(p => p.name)
@@ -889,7 +1246,7 @@
           }
 
           groupClass.id = groupClass.id || id;
-          groupClass.name = normalizeName(groupClass.name || "My Class") || "My Class";
+          groupClass.name = normalizeName(groupClass.name || t("class.migratedName")) || t("class.migratedName");
           groupClass.preferredSize = Number(groupClass.preferredSize) || 3;
           if (groupClass.preferredSize < 2 || groupClass.preferredSize > 6) groupClass.preferredSize = 3;
 
@@ -916,7 +1273,7 @@
           if (firstId) {
             state.data.activeClassId = firstId;
           } else {
-            const starter = createClassObject("Class 1");
+            const starter = createClassObject(t("class.defaultName"));
             state.data.classes[starter.id] = starter;
             state.data.activeClassId = starter.id;
           }
@@ -1078,7 +1435,7 @@
         if (groupClass.participants.length === 0) {
           els.participantsList.innerHTML = `
             <div class="empty">
-              No students yet.
+              ${escapeHtml(t("student.empty"))}
             </div>
           `;
           return;
@@ -1091,18 +1448,18 @@
               data-action="toggle-absent"
               data-index="${index}"
               type="button"
-              aria-label="${student.absent ? `Mark ${escapeHtml(student.name)} here` : `Mark ${escapeHtml(student.name)} away`}"
-              title="${student.absent ? "Mark here" : "Mark away"}"
+              aria-label="${escapeHtml(t(student.absent ? "student.attendance.markHere" : "student.attendance.markAway", { name: student.name }))}"
+              title="${escapeHtml(t(student.absent ? "student.attendance.titleHere" : "student.attendance.titleAway"))}"
             ></button>
 
             <div class="participant-main">
               <div class="participant-name">${escapeHtml(student.name)}</div>
-              ${student.absent ? `<span class="participant-tag">Away</span>` : ``}
+              ${student.absent ? `<span class="participant-tag">${escapeHtml(t("student.attendance.away"))}</span>` : ``}
             </div>
 
             <div class="small-actions">
-              <button class="btn-secondary btn-icon" data-action="edit" data-index="${index}" type="button">Edit</button>
-              <button class="btn-danger btn-icon" data-action="delete" data-index="${index}" type="button">Delete</button>
+              <button class="btn-secondary btn-icon" data-action="edit" data-index="${index}" type="button">${escapeHtml(t("student.edit.button"))}</button>
+              <button class="btn-danger btn-icon" data-action="delete" data-index="${index}" type="button">${escapeHtml(t("student.delete.button"))}</button>
             </div>
           </div>
         `).join("");
@@ -1115,7 +1472,7 @@
         if (!groupClass.currentGroups.length) {
           els.groupsContainer.innerHTML = `
             <div class="empty">
-              No groups yet.
+              ${escapeHtml(t("groups.empty"))}
             </div>
           `;
           return;
@@ -1125,7 +1482,7 @@
           <div class="groups-grid">
             ${groupClass.currentGroups.map((group, index) => `
               <article class="group-card">
-                <h3>Group ${index + 1}</h3>
+                <h3>${escapeHtml(t("groups.groupLabel", { number: index + 1 }))}</h3>
                 <ol class="member-list">
                   ${group.map(name => `<li>${escapeHtml(name)}</li>`).join("")}
                 </ol>
@@ -1140,12 +1497,12 @@
         if (!groupClass) return;
 
         const count = groupClass.history.length;
-        els.historyTitle.textContent = `Earlier groups (${count})`;
+        els.historyTitle.textContent = t("groups.history.title", { count });
 
         if (!count) {
           els.historyContainer.innerHTML = `
             <div class="empty">
-              No earlier groups yet.
+              ${escapeHtml(t("groups.history.empty"))}
             </div>
           `;
           return;
@@ -1155,14 +1512,16 @@
 
         const items = recentEntries.map(entry => {
           const timestamp = new Date(entry.timestamp);
-          const label = isNaN(timestamp.getTime()) ? "Saved groups" : timestamp.toLocaleString();
+          const label = isNaN(timestamp.getTime())
+            ? t("groups.history.saved")
+            : timestamp.toLocaleString(state.language);
 
           return `
             <div class="history-item">
               <div class="history-time">${escapeHtml(label)}</div>
               <div class="history-groups">
                 ${entry.groups.map((group, index) => `
-                  <div><strong>Group ${index + 1}:</strong> ${group.map(escapeHtml).join(", ")}</div>
+                  <div><strong>${escapeHtml(t("groups.groupLabel", { number: index + 1 }))}:</strong> ${group.map(escapeHtml).join(", ")}</div>
                 `).join("")}
               </div>
             </div>
@@ -1199,12 +1558,12 @@
         const name = normalizeName(raw);
 
         if (!name) {
-          setMessage("Please enter a class name.", "error");
+          setMessageKey("class.validation.enterName", "error");
           return;
         }
 
         if (classNameExists(name)) {
-          setMessage("That class name is already in use.", "error");
+          setMessageKey("class.validation.duplicateName", "error");
           return;
         }
 
@@ -1214,7 +1573,7 @@
         els.newClassInput.value = "";
         saveState();
         renderAll();
-        setMessage(`“${name}” is ready.`, "success");
+        setMessageKey("class.ready", "success", { name });
       }
 
       function renameClass() {
@@ -1222,24 +1581,24 @@
         const groupClass = getCurrentClass();
         if (!groupClass) return;
 
-        const updated = window.prompt("New name for this class:", groupClass.name);
+        const updated = window.prompt(t("class.prompt.rename"), groupClass.name);
         if (updated === null) return;
 
         const name = normalizeName(updated);
         if (!name) {
-          setMessage("Please enter a class name.", "error");
+          setMessageKey("class.validation.enterName", "error");
           return;
         }
 
         if (classNameExists(name, groupClass.id)) {
-          setMessage("That class name is already in use.", "error");
+          setMessageKey("class.validation.duplicateName", "error");
           return;
         }
 
         groupClass.name = name;
         saveState();
         renderClassSelector();
-        setMessage("Class name updated.", "success");
+        setMessageKey("class.nameUpdated", "success");
       }
 
       function switchClass(classId) {
@@ -1248,21 +1607,21 @@
         saveState();
         renderAll();
         closeManageMenu();
-        setMessage("Class changed.", "info");
+        setMessageKey("class.changed", "info");
       }
 
       function deleteClass() {
         closeManageMenu();
         const ids = Object.keys(state.data.classes);
         if (ids.length <= 1) {
-          setMessage("Keep at least one class.", "info");
+          setMessageKey("class.keepOne", "info");
           return;
         }
 
         const groupClass = getCurrentClass();
         if (!groupClass) return;
 
-        const confirmed = window.confirm(`Delete the class “${groupClass.name}”?`);
+        const confirmed = window.confirm(t("class.confirm.delete", { name: groupClass.name }));
         if (!confirmed) return;
 
         delete state.data.classes[groupClass.id];
@@ -1270,7 +1629,7 @@
         state.data.activeClassId = nextId || null;
         saveState();
         renderAll();
-        setMessage("Class deleted.", "success");
+        setMessageKey("class.deleted", "success");
       }
 
       function addParticipant() {
@@ -1281,12 +1640,12 @@
         const name = normalizeName(raw);
 
         if (!name) {
-          setMessage("Please enter a student name.", "error");
+          setMessageKey("student.validation.enterName", "error");
           return;
         }
 
         if (participantNameExists(name)) {
-          setMessage("That student is already in this class.", "error");
+          setMessageKey("student.validation.duplicateName", "error");
           return;
         }
 
@@ -1295,7 +1654,7 @@
         els.nameInput.value = "";
         saveState();
         renderParticipants();
-        setMessage(`Added ${name}.`, "success");
+        setMessageKey("student.add.success", "success", { name });
       }
 
       function editParticipant(index) {
@@ -1303,17 +1662,17 @@
         if (!groupClass) return;
 
         const current = groupClass.participants[index];
-        const updated = window.prompt("Edit student name:", current.name);
+        const updated = window.prompt(t("student.edit.prompt"), current.name);
         if (updated === null) return;
 
         const name = normalizeName(updated);
         if (!name) {
-          setMessage("Name cannot be empty.", "error");
+          setMessageKey("student.validation.emptyName", "error");
           return;
         }
 
         if (participantNameExists(name, index)) {
-          setMessage("That student is already in this class.", "error");
+          setMessageKey("student.validation.duplicateName", "error");
           return;
         }
 
@@ -1321,7 +1680,7 @@
         groupClass.participants.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
         saveState();
         renderParticipants();
-        setMessage("Student name updated.", "success");
+        setMessageKey("student.edit.success", "success");
       }
 
       function deleteParticipant(index) {
@@ -1329,13 +1688,13 @@
         if (!groupClass) return;
 
         const student = groupClass.participants[index];
-        const confirmed = window.confirm(`Remove ${student.name} from this class?`);
+        const confirmed = window.confirm(t("student.delete.confirm", { name: student.name }));
         if (!confirmed) return;
 
         groupClass.participants.splice(index, 1);
         saveState();
         renderParticipants();
-        setMessage(`${student.name} was removed.`, "success");
+        setMessageKey("student.delete.success", "success", { name: student.name });
       }
 
       function toggleAbsent(index) {
@@ -1354,18 +1713,18 @@
         if (!groupClass) return;
 
         if (!groupClass.participants.length) {
-          setMessage("This class is already empty.", "info");
+          setMessageKey("student.alreadyEmpty", "info");
           return;
         }
 
-        const confirmed = window.confirm("Remove all students from this class?");
+        const confirmed = window.confirm(t("student.confirm.removeAll"));
         if (!confirmed) return;
 
         groupClass.participants = [];
         groupClass.currentGroups = [];
         saveState();
         renderAll();
-        setMessage("All students removed.", "success");
+        setMessageKey("student.removedAll", "success");
       }
 
       function clearCurrentGroups() {
@@ -1375,7 +1734,7 @@
         groupClass.currentGroups = [];
         saveState();
         renderGroups();
-        setMessage("Groups cleared.", "info");
+        setMessageKey("groups.clear.success", "info");
       }
 
       function resetHistory() {
@@ -1383,18 +1742,18 @@
         if (!groupClass) return;
 
         if (!groupClass.history.length && Object.keys(groupClass.pairCounts).length === 0) {
-          setMessage("There is nothing to clear yet.", "info");
+          setMessageKey("groups.history.nothingToClear", "info");
           return;
         }
 
-        const confirmed = window.confirm("Clear earlier groups for this class?");
+        const confirmed = window.confirm(t("groups.history.confirmClear"));
         if (!confirmed) return;
 
         groupClass.history = [];
         groupClass.pairCounts = {};
         saveState();
         renderHistory();
-        setMessage("Earlier groups cleared.", "success");
+        setMessageKey("groups.history.cleared", "success");
       }
 
       function generateGroups() {
@@ -1404,13 +1763,13 @@
         const available = groupClass.participants.filter(p => !p.absent).map(p => p.name);
 
         if (available.length < 2) {
-          setMessage("Not enough students are here to make groups.", "error");
+          setMessageKey("groups.validation.notEnough", "error");
           return;
         }
 
         const sizes = computeGroupSizes(available.length, groupClass.preferredSize);
         if (!sizes.length || Math.min(...sizes) < 2) {
-          setMessage("These students cannot be grouped without leaving one student alone.", "error");
+          setMessageKey("groups.validation.leavesOne", "error");
           return;
         }
 
@@ -1431,10 +1790,19 @@
         saveState();
         renderGroups();
         renderHistory();
-        setMessage("Groups are ready.", "success");
+        setMessageKey("groups.ready", "success");
       }
 
       function bindEvents() {
+        els.languageSelect.addEventListener("change", () => {
+          if (!translations[els.languageSelect.value]) return;
+          state.language = els.languageSelect.value;
+          saveLanguage();
+          applyTranslations();
+          renderAll();
+          closeManageMenu();
+        });
+
         els.createClassBtn.addEventListener("click", createClass);
         els.renameClassBtn.addEventListener("click", renameClass);
         els.deleteClassBtn.addEventListener("click", deleteClass);
@@ -1495,10 +1863,12 @@
       }
 
       function init() {
+        loadLanguage();
+        applyTranslations();
         loadState();
         bindEvents();
         renderAll();
-        setMessage("Ready.", "info");
+        setMessageKey("status.ready", "info");
       }
 
       init();
