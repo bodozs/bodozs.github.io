@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Student Groups</title>
+  <style>
+    :root{
+      --bg: #f6fbff;
+      --bg-soft: #eef7ff;
+      --panel: #ffffff;
+      --panel-soft: #f8fbff;
+      --border: #dbe8f4;
+      --border-strong: #c7ddef;
+      --text: #243447;
+      --muted: #5f7489;
+      --primary: #2f80ed;
+      --primary-2: #54c3a8;
+      --success: #1f9d6b;
+      --danger: #d9536f;
+      --danger-soft: #fff1f4;
+      --warning: #b7791f;
+      --warning-soft: #fff8e6;
+      --shadow: 0 12px 30px rgba(46, 99, 155, 0.09);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(83,193,167,0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,209,102,0.16), transparent 30%),
+        linear-gradient(180deg, #fbfdff 0%, #f1f8ff 100%);
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 14px;
+    }
+
+    .app {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(244,250,255,0.94));
+      box-shadow: var(--shadow);
+    }
+
+    .topbar h1 {
+      margin: 0 0 2px;
+      font-size: clamp(1.28rem, 2vw, 1.7rem);
+      line-height: 1.12;
+      color: #1f3550;
+    }
+
+    .topbar p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.38;
+    }
+
+    .topbar-stats {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .pill strong {
+      color: #23405e;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.96fr) minmax(360px, 1.04fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-inner {
+      padding: 14px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #23405e;
+    }
+
+    .subtle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .field-row {
+      display: grid;
+      gap: 6px;
+    }
+
+    .compact-label {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      border: 1px solid var(--border-strong);
+      background: #fff;
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 0.96rem;
+      outline: none;
+      transition: 0.18s ease;
+      min-height: 40px;
+    }
+
+    input[type="text"]:focus, select:focus {
+      border-color: rgba(47,128,237,0.75);
+      box-shadow: 0 0 0 4px rgba(47,128,237,0.12);
+    }
+
+    select { appearance: none; }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, opacity 0.15s ease, background 0.2s ease;
+      min-height: 40px;
+      white-space: nowrap;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #63a7ff);
+      color: white;
+      box-shadow: 0 8px 18px rgba(47,128,237,0.16);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, var(--primary-2), #7cd8c1);
+      color: #103f35;
+      box-shadow: 0 8px 18px rgba(83,193,167,0.16);
+    }
+
+    .btn-secondary {
+      background: #f4f9ff;
+      color: #24435f;
+      border: 1px solid var(--border);
+    }
+
+    .btn-danger {
+      background: var(--danger-soft);
+      color: #b23f57;
+      border: 1px solid #f1c2cb;
+    }
+
+    .btn-warning {
+      background: var(--warning-soft);
+      color: #8b5c18;
+      border: 1px solid #efd89f;
+    }
+
+    .btn-icon {
+      min-height: 30px;
+      padding: 5px 8px;
+      font-size: 0.78rem;
+      border-radius: 9px;
+      font-weight: 700;
+    }
+
+    .message {
+      min-height: 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding-top: 2px;
+    }
+
+    .message.error { color: #b83d55; }
+    .message.success { color: #187a55; }
+    .message.info { color: #2d5f92; }
+
+    .class-row {
+      display: grid;
+      grid-template-columns: minmax(190px, 260px) 1fr;
+      gap: 8px;
+      align-items: end;
+      margin-bottom: 10px;
+    }
+
+    .participants {
+      display: grid;
+      gap: 6px;
+      margin-top: 8px;
+      max-height: 505px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .participant-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 7px 10px;
+      background: #fbfdff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      min-height: 42px;
+    }
+
+    .participant-item.absent {
+      background: #fffaf0;
+      border-color: #efd89f;
+      opacity: 0.72;
+    }
+
+    .attendance-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background: #fff;
+      cursor: pointer;
+      transition: 0.15s ease;
+      flex: 0 0 auto;
+      position: relative;
+    }
+
+    .attendance-toggle:hover {
+      border-color: #9bbfe7;
+      background: #f6fbff;
+    }
+
+    .attendance-toggle.absent {
+      background: #fff4d8;
+      border-color: #e7c772;
+    }
+
+    .attendance-toggle.absent::after {
+      content: "–";
+      position: absolute;
+      font-weight: 900;
+      font-size: 13px;
+      color: #9a681a;
+      line-height: 1;
+      transform: translateY(-0.5px);
+    }
+
+    .participant-main {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .participant-name {
+      font-weight: 650;
+      word-break: break-word;
+      color: #24435f;
+      font-size: 0.94rem;
+      line-height: 1.2;
+    }
+
+    .participant-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--warning-soft);
+      border: 1px solid #efd89f;
+      color: #94641d;
+      flex: 0 0 auto;
+    }
+
+    .small-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .groups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+    }
+
+    .group-card {
+      background: linear-gradient(180deg, #ffffff, #f7fbff);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 13px;
+      min-height: 110px;
+    }
+
+    .group-card h3 {
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      color: #23405e;
+    }
+
+    .member-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .member-list li {
+      margin: 5px 0;
+      line-height: 1.35;
+      font-size: 0.94rem;
+    }
+
+    .history-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+      max-height: 320px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .history-item {
+      background: #fbfdff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 11px;
+    }
+
+    .history-time {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 5px;
+    }
+
+    .history-groups {
+      display: grid;
+      gap: 4px;
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+
+    .empty {
+      border: 1px dashed var(--border-strong);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--muted);
+      background: #fbfdff;
+      line-height: 1.45;
+      font-size: 0.92rem;
+    }
+
+    .secondary-box {
+      margin-top: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    details.secondary-panel {
+      background: #fbfdff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details.secondary-panel summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 12px 14px;
+      font-weight: 700;
+      color: #23405e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      font-size: 0.94rem;
+    }
+
+    details.secondary-panel summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.secondary-panel[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .secondary-content {
+      padding: 12px 14px 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .group-toolbar {
+      display: grid;
+      grid-template-columns: minmax(140px, 180px) auto auto;
+      gap: 8px;
+      align-items: end;
+      margin-bottom: 10px;
+    }
+
+    .mini-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (max-width: 1020px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .participants {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-stats {
+        justify-content: flex-start;
+      }
+
+      .class-row,
+      .group-toolbar {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body { padding: 10px; }
+      .topbar, .panel-inner { padding: 12px; }
+      .input-row { flex-direction: column; }
+      .participant-item {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+          "toggle main"
+          ". actions";
+        align-items: center;
+      }
+      .participant-item .attendance-toggle { grid-area: toggle; }
+      .participant-item .participant-main { grid-area: main; }
+      .participant-item .small-actions {
+        grid-area: actions;
+        justify-content: flex-start;
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="topbar">
+      <div>
+        <h1>Create Student Groups</h1>
+        <p>Choose a class, mark who is away, then make groups.</p>
+      </div>
+      <div class="topbar-stats">
+        <div class="pill">Students: <strong id="participantCount">0</strong></div>
+        <div class="pill">Here today: <strong id="presentCount">0</strong></div>
+      </div>
+    </section>
+
+    <div class="main-grid">
+      <section class="stack">
+        <section class="panel">
+          <div class="panel-inner">
+            <h2>Class and Students</h2>
+
+            <div class="class-row">
+              <div class="field-row">
+                <label for="classSelect" class="compact-label">Class</label>
+                <select id="classSelect" aria-label="Class"></select>
+              </div>
+
+              <div class="field-row">
+                <label for="nameInput" class="compact-label">Add a student</label>
+                <div class="input-row">
+                  <input id="nameInput" type="text" placeholder="Student name" maxlength="80" />
+                  <button id="addBtn" class="btn-primary" type="button">Add</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="participantsList" class="participants"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-inner">
+            <details class="secondary-panel">
+              <summary>
+                <span>Class settings</span>
+                <span aria-hidden="true">▾</span>
+              </summary>
+              <div class="secondary-content">
+                <div class="field-row">
+                  <label for="newClassInput" class="compact-label">New class name</label>
+                  <div class="input-row">
+                    <input id="newClassInput" type="text" placeholder="New class name" maxlength="80" />
+                    <button id="createClassBtn" class="btn-primary" type="button">Add Class</button>
+                  </div>
+                </div>
+
+                <div class="mini-toolbar">
+                  <button id="renameClassBtn" class="btn-secondary" type="button">Rename Class</button>
+                  <button id="deleteClassBtn" class="btn-danger" type="button">Delete Class</button>
+                  <button id="clearParticipantsBtn" class="btn-secondary" type="button">Clear Class</button>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+      </section>
+
+      <section class="stack">
+        <section class="panel">
+          <div class="panel-inner">
+            <h2>Today’s Groups</h2>
+
+            <div class="group-toolbar">
+              <div class="field-row">
+                <label for="groupSize" class="compact-label">Group size</label>
+                <select id="groupSize" aria-label="Group size">
+                  <option value="2">2 students</option>
+                  <option value="3" selected>3 students</option>
+                  <option value="4">4 students</option>
+                  <option value="5">5 students</option>
+                  <option value="6">6 students</option>
+                </select>
+              </div>
+
+              <button id="generateBtn" class="btn-success" type="button">Make Groups</button>
+              <button id="clearCurrentBtn" class="btn-secondary" type="button">Clear Groups</button>
+            </div>
+
+            <div id="message" class="message info" aria-live="polite"></div>
+            <div id="groupsContainer" style="margin-top:10px;"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-inner">
+            <details class="secondary-panel">
+              <summary>
+                <span id="historyTitle">Earlier groups (0)</span>
+                <span aria-hidden="true">▾</span>
+              </summary>
+              <div class="secondary-content">
+                <div class="mini-toolbar">
+                  <button id="resetHistoryBtn" class="btn-warning" type="button">Clear Earlier Groups</button>
+                </div>
+
+                <div id="historyContainer"></div>
+              </div>
+            </details>
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = "teacher-group-maker-data-v2";
+
+      const state = {
+        data: {
+          activeClassId: null,
+          classes: {}
+        }
+      };
+
+      const els = {
+        classSelect: document.getElementById("classSelect"),
+        newClassInput: document.getElementById("newClassInput"),
+        createClassBtn: document.getElementById("createClassBtn"),
+        renameClassBtn: document.getElementById("renameClassBtn"),
+        deleteClassBtn: document.getElementById("deleteClassBtn"),
+        nameInput: document.getElementById("nameInput"),
+        addBtn: document.getElementById("addBtn"),
+        groupSize: document.getElementById("groupSize"),
+        generateBtn: document.getElementById("generateBtn"),
+        clearParticipantsBtn: document.getElementById("clearParticipantsBtn"),
+        resetHistoryBtn: document.getElementById("resetHistoryBtn"),
+        clearCurrentBtn: document.getElementById("clearCurrentBtn"),
+        message: document.getElementById("message"),
+        participantCount: document.getElementById("participantCount"),
+        presentCount: document.getElementById("presentCount"),
+        participantsList: document.getElementById("participantsList"),
+        groupsContainer: document.getElementById("groupsContainer"),
+        historyContainer: document.getElementById("historyContainer"),
+        historyTitle: document.getElementById("historyTitle")
+      };
+
+      function createClassObject(name) {
+        return {
+          id: createId(),
+          name,
+          preferredSize: 3,
+          participants: [],
+          history: [],
+          pairCounts: {},
+          currentGroups: []
+        };
+      }
+
+      function createId() {
+        return "class-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+      }
+
+      function getCurrentClass() {
+        return state.data.classes[state.data.activeClassId] || null;
+      }
+
+      function normalizeName(name) {
+        return name.trim().replace(/\s+/g, " ");
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function setMessage(text, type = "info") {
+        els.message.textContent = text;
+        els.message.className = `message ${type}`;
+      }
+
+      function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.data));
+      }
+
+      function migrateOldDataIfNeeded() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return false;
+
+        const oldParticipants = JSON.parse(localStorage.getItem("german-group-splitter-participants") || "null");
+        const oldPreferredSize = Number(localStorage.getItem("german-group-splitter-preferred-size")) || 3;
+        const oldHistory = JSON.parse(localStorage.getItem("german-group-splitter-history") || "null");
+        const oldPairCounts = JSON.parse(localStorage.getItem("german-group-splitter-pair-counts") || "null");
+        const oldCurrentGroups = JSON.parse(localStorage.getItem("german-group-splitter-current-groups") || "null");
+
+        if (!Array.isArray(oldParticipants) && !Array.isArray(oldHistory) && !Array.isArray(oldCurrentGroups)) {
+          return false;
+        }
+
+        const groupClass = createClassObject("My Class");
+        groupClass.preferredSize = oldPreferredSize >= 2 && oldPreferredSize <= 6 ? oldPreferredSize : 3;
+        groupClass.participants = Array.isArray(oldParticipants)
+          ? oldParticipants.map(name => ({ name: normalizeName(name), absent: false })).filter(p => p.name)
+          : [];
+        groupClass.history = Array.isArray(oldHistory) ? oldHistory : [];
+        groupClass.pairCounts = oldPairCounts && typeof oldPairCounts === "object" ? oldPairCounts : {};
+        groupClass.currentGroups = Array.isArray(oldCurrentGroups) ? oldCurrentGroups : [];
+
+        state.data = {
+          activeClassId: groupClass.id,
+          classes: { [groupClass.id]: groupClass }
+        };
+        saveState();
+        return true;
+      }
+
+      function loadState() {
+        migrateOldDataIfNeeded();
+
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+          if (saved && typeof saved === "object") {
+            state.data = saved;
+          }
+        } catch (err) {
+          console.error("Could not read saved data:", err);
+        }
+
+        if (!state.data || typeof state.data !== "object") {
+          state.data = { activeClassId: null, classes: {} };
+        }
+
+        if (!state.data.classes || typeof state.data.classes !== "object") {
+          state.data.classes = {};
+        }
+
+        for (const id of Object.keys(state.data.classes)) {
+          const groupClass = state.data.classes[id];
+          if (!groupClass || typeof groupClass !== "object") {
+            delete state.data.classes[id];
+            continue;
+          }
+
+          groupClass.id = groupClass.id || id;
+          groupClass.name = normalizeName(groupClass.name || "My Class") || "My Class";
+          groupClass.preferredSize = Number(groupClass.preferredSize) || 3;
+          if (groupClass.preferredSize < 2 || groupClass.preferredSize > 6) groupClass.preferredSize = 3;
+
+          if (!Array.isArray(groupClass.participants)) groupClass.participants = [];
+          groupClass.participants = groupClass.participants
+            .map(item => {
+              if (typeof item === "string") {
+                return { name: normalizeName(item), absent: false };
+              }
+              return {
+                name: normalizeName(item?.name || ""),
+                absent: Boolean(item?.absent)
+              };
+            })
+            .filter(item => item.name);
+
+          if (!Array.isArray(groupClass.history)) groupClass.history = [];
+          if (!groupClass.pairCounts || typeof groupClass.pairCounts !== "object") groupClass.pairCounts = {};
+          if (!Array.isArray(groupClass.currentGroups)) groupClass.currentGroups = [];
+        }
+
+        if (!state.data.activeClassId || !state.data.classes[state.data.activeClassId]) {
+          const firstId = Object.keys(state.data.classes)[0];
+          if (firstId) {
+            state.data.activeClassId = firstId;
+          } else {
+            const starter = createClassObject("Class 1");
+            state.data.classes[starter.id] = starter;
+            state.data.activeClassId = starter.id;
+          }
+        }
+
+        saveState();
+      }
+
+      function classNameExists(name, excludeId = null) {
+        const test = normalizeName(name).toLocaleLowerCase();
+        return Object.values(state.data.classes).some(groupClass =>
+          groupClass.id !== excludeId && groupClass.name.toLocaleLowerCase() === test
+        );
+      }
+
+      function participantNameExists(name, excludeIndex = -1) {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return false;
+        const test = normalizeName(name).toLocaleLowerCase();
+        return groupClass.participants.some((p, index) =>
+          index !== excludeIndex && p.name.toLocaleLowerCase() === test
+        );
+      }
+
+      function pairKey(a, b) {
+        return [a, b].sort((x, y) => x.localeCompare(y)).join("||");
+      }
+
+      function getPairCount(a, b) {
+        const groupClass = getCurrentClass();
+        return groupClass ? (groupClass.pairCounts[pairKey(a, b)] || 0) : 0;
+      }
+
+      function shuffle(array) {
+        const copy = [...array];
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      }
+
+      // Choose balanced group sizes near the preferred size, without leaving one student alone.
+      function computeGroupSizes(total, preferredSize) {
+        if (total < 2) return [];
+        if (total === 2) return [2];
+        if (total === 3) return [3];
+
+        let best = null;
+
+        for (let groups = 1; groups <= total; groups++) {
+          const base = Math.floor(total / groups);
+          const extra = total % groups;
+          const max = base + (extra > 0 ? 1 : 0);
+
+          if (base < 2) continue;
+          if (max > 6) continue;
+
+          const sizes = Array.from({ length: groups }, (_, i) => base + (i < extra ? 1 : 0));
+          const min = Math.min(...sizes);
+          if (min < 2) continue;
+
+          const avgPenalty = sizes.reduce((sum, s) => sum + Math.abs(s - preferredSize), 0);
+          const spreadPenalty = max - min;
+          const groupCountPenalty = Math.abs(groups - Math.round(total / preferredSize)) * 0.15;
+          const score = avgPenalty + spreadPenalty * 0.35 + groupCountPenalty;
+
+          if (!best || score < best.score) {
+            best = { sizes, score };
+          }
+        }
+
+        if (best) return best.sizes;
+
+        if (total % 2 === 0) return new Array(total / 2).fill(2);
+        return [3, ...new Array((total - 3) / 2).fill(2)];
+      }
+
+      // Lower scores are better: fewer repeated classmates, plus a little randomness.
+      function scoreGroups(groups) {
+        let repeatedScore = 0;
+        let higherRepeatPenalty = 0;
+
+        for (const group of groups) {
+          for (let i = 0; i < group.length; i++) {
+            for (let j = i + 1; j < group.length; j++) {
+              const count = getPairCount(group[i], group[j]);
+              repeatedScore += count;
+              higherRepeatPenalty += count * count;
+            }
+          }
+        }
+
+        const randomNoise = Math.random() * 1.2;
+        return repeatedScore * 3 + higherRepeatPenalty * 1.5 + randomNoise;
+      }
+
+      // Try many groupings, then choose one of the stronger options to keep variety.
+      function generateBalancedGroups(names, preferredSize) {
+        const sizes = computeGroupSizes(names.length, preferredSize);
+        const attempts = 350;
+        const candidates = [];
+
+        for (let attempt = 0; attempt < attempts; attempt++) {
+          const pool = shuffle(names);
+          const groups = [];
+          let index = 0;
+
+          for (const size of sizes) {
+            groups.push(pool.slice(index, index + size));
+            index += size;
+          }
+
+          candidates.push({ groups, score: scoreGroups(groups) });
+        }
+
+        candidates.sort((a, b) => a.score - b.score);
+        const topCount = Math.min(12, candidates.length);
+        return candidates[Math.floor(Math.random() * topCount)].groups;
+      }
+
+      function updatePairHistory(groups) {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        for (const group of groups) {
+          for (let i = 0; i < group.length; i++) {
+            for (let j = i + 1; j < group.length; j++) {
+              const key = pairKey(group[i], group[j]);
+              groupClass.pairCounts[key] = (groupClass.pairCounts[key] || 0) + 1;
+            }
+          }
+        }
+      }
+
+      function renderClassSelector() {
+        const classes = Object.values(state.data.classes).sort((a, b) =>
+          a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+        );
+
+        els.classSelect.innerHTML = classes.map(groupClass => `
+          <option value="${escapeHtml(groupClass.id)}">${escapeHtml(groupClass.name)}</option>
+        `).join("");
+
+        const current = getCurrentClass();
+        if (current) {
+          els.classSelect.value = current.id;
+          els.groupSize.value = String(current.preferredSize);
+        }
+
+        els.deleteClassBtn.disabled = classes.length <= 1;
+      }
+
+      function renderParticipants() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const presentCount = groupClass.participants.filter(p => !p.absent).length;
+        els.participantCount.textContent = String(groupClass.participants.length);
+        els.presentCount.textContent = String(presentCount);
+
+        if (groupClass.participants.length === 0) {
+          els.participantsList.innerHTML = `
+            <div class="empty">
+              No students yet.
+            </div>
+          `;
+          return;
+        }
+
+        els.participantsList.innerHTML = groupClass.participants.map((student, index) => `
+          <div class="participant-item ${student.absent ? "absent" : ""}">
+            <button
+              class="attendance-toggle ${student.absent ? "absent" : ""}"
+              data-action="toggle-absent"
+              data-index="${index}"
+              type="button"
+              aria-label="${student.absent ? `Mark ${escapeHtml(student.name)} here` : `Mark ${escapeHtml(student.name)} away`}"
+              title="${student.absent ? "Mark here" : "Mark away"}"
+            ></button>
+
+            <div class="participant-main">
+              <div class="participant-name">${escapeHtml(student.name)}</div>
+              ${student.absent ? `<span class="participant-tag">Away</span>` : ``}
+            </div>
+
+            <div class="small-actions">
+              <button class="btn-secondary btn-icon" data-action="edit" data-index="${index}" type="button">Edit</button>
+              <button class="btn-danger btn-icon" data-action="delete" data-index="${index}" type="button">Delete</button>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      function renderGroups() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        if (!groupClass.currentGroups.length) {
+          els.groupsContainer.innerHTML = `
+            <div class="empty">
+              No groups yet.
+            </div>
+          `;
+          return;
+        }
+
+        els.groupsContainer.innerHTML = `
+          <div class="groups-grid">
+            ${groupClass.currentGroups.map((group, index) => `
+              <article class="group-card">
+                <h3>Group ${index + 1}</h3>
+                <ol class="member-list">
+                  ${group.map(name => `<li>${escapeHtml(name)}</li>`).join("")}
+                </ol>
+              </article>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      function renderHistory() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const count = groupClass.history.length;
+        els.historyTitle.textContent = `Earlier groups (${count})`;
+
+        if (!count) {
+          els.historyContainer.innerHTML = `
+            <div class="empty">
+              No earlier groups yet.
+            </div>
+          `;
+          return;
+        }
+
+        const recentEntries = [...groupClass.history].reverse().slice(0, 8);
+
+        const items = recentEntries.map(entry => {
+          const timestamp = new Date(entry.timestamp);
+          const label = isNaN(timestamp.getTime()) ? "Saved groups" : timestamp.toLocaleString();
+
+          return `
+            <div class="history-item">
+              <div class="history-time">${escapeHtml(label)}</div>
+              <div class="history-groups">
+                ${entry.groups.map((group, index) => `
+                  <div><strong>Group ${index + 1}:</strong> ${group.map(escapeHtml).join(", ")}</div>
+                `).join("")}
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        els.historyContainer.innerHTML = `<div class="history-list">${items}</div>`;
+      }
+
+      function renderAll() {
+        renderClassSelector();
+        renderParticipants();
+        renderGroups();
+        renderHistory();
+      }
+
+      function createClass() {
+        const raw = els.newClassInput.value;
+        const name = normalizeName(raw);
+
+        if (!name) {
+          setMessage("Please enter a class name.", "error");
+          return;
+        }
+
+        if (classNameExists(name)) {
+          setMessage("That class name is already in use.", "error");
+          return;
+        }
+
+        const groupClass = createClassObject(name);
+        state.data.classes[groupClass.id] = groupClass;
+        state.data.activeClassId = groupClass.id;
+        els.newClassInput.value = "";
+        saveState();
+        renderAll();
+        setMessage(`“${name}” is ready.`, "success");
+      }
+
+      function renameClass() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const updated = window.prompt("New name for this class:", groupClass.name);
+        if (updated === null) return;
+
+        const name = normalizeName(updated);
+        if (!name) {
+          setMessage("Please enter a class name.", "error");
+          return;
+        }
+
+        if (classNameExists(name, groupClass.id)) {
+          setMessage("That class name is already in use.", "error");
+          return;
+        }
+
+        groupClass.name = name;
+        saveState();
+        renderClassSelector();
+        setMessage("Class name updated.", "success");
+      }
+
+      function switchClass(classId) {
+        if (!state.data.classes[classId]) return;
+        state.data.activeClassId = classId;
+        saveState();
+        renderAll();
+        setMessage("Class changed.", "info");
+      }
+
+      function deleteClass() {
+        const ids = Object.keys(state.data.classes);
+        if (ids.length <= 1) {
+          setMessage("Keep at least one class.", "info");
+          return;
+        }
+
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const confirmed = window.confirm(`Delete the class “${groupClass.name}”?`);
+        if (!confirmed) return;
+
+        delete state.data.classes[groupClass.id];
+        const nextId = Object.keys(state.data.classes)[0];
+        state.data.activeClassId = nextId || null;
+        saveState();
+        renderAll();
+        setMessage("Class deleted.", "success");
+      }
+
+      function addParticipant() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const raw = els.nameInput.value;
+        const name = normalizeName(raw);
+
+        if (!name) {
+          setMessage("Please enter a student name.", "error");
+          return;
+        }
+
+        if (participantNameExists(name)) {
+          setMessage("That student is already in this class.", "error");
+          return;
+        }
+
+        groupClass.participants.push({ name, absent: false });
+        groupClass.participants.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+        els.nameInput.value = "";
+        saveState();
+        renderParticipants();
+        setMessage(`Added ${name}.`, "success");
+      }
+
+      function editParticipant(index) {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const current = groupClass.participants[index];
+        const updated = window.prompt("Edit student name:", current.name);
+        if (updated === null) return;
+
+        const name = normalizeName(updated);
+        if (!name) {
+          setMessage("Name cannot be empty.", "error");
+          return;
+        }
+
+        if (participantNameExists(name, index)) {
+          setMessage("That student is already in this class.", "error");
+          return;
+        }
+
+        current.name = name;
+        groupClass.participants.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+        saveState();
+        renderParticipants();
+        setMessage("Student name updated.", "success");
+      }
+
+      function deleteParticipant(index) {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const student = groupClass.participants[index];
+        const confirmed = window.confirm(`Remove ${student.name} from this class?`);
+        if (!confirmed) return;
+
+        groupClass.participants.splice(index, 1);
+        saveState();
+        renderParticipants();
+        setMessage(`${student.name} was removed.`, "success");
+      }
+
+      function toggleAbsent(index) {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const student = groupClass.participants[index];
+        student.absent = !student.absent;
+        saveState();
+        renderParticipants();
+      }
+
+      function clearParticipants() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        if (!groupClass.participants.length) {
+          setMessage("This class is already empty.", "info");
+          return;
+        }
+
+        const confirmed = window.confirm("Clear all students from this class?");
+        if (!confirmed) return;
+
+        groupClass.participants = [];
+        groupClass.currentGroups = [];
+        saveState();
+        renderAll();
+        setMessage("Class cleared.", "success");
+      }
+
+      function clearCurrentGroups() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        groupClass.currentGroups = [];
+        saveState();
+        renderGroups();
+        setMessage("Groups cleared.", "info");
+      }
+
+      function resetHistory() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        if (!groupClass.history.length && Object.keys(groupClass.pairCounts).length === 0) {
+          setMessage("There is nothing to clear yet.", "info");
+          return;
+        }
+
+        const confirmed = window.confirm("Clear earlier groups for this class?");
+        if (!confirmed) return;
+
+        groupClass.history = [];
+        groupClass.pairCounts = {};
+        saveState();
+        renderHistory();
+        setMessage("Earlier groups cleared.", "success");
+      }
+
+      function generateGroups() {
+        const groupClass = getCurrentClass();
+        if (!groupClass) return;
+
+        const available = groupClass.participants.filter(p => !p.absent).map(p => p.name);
+
+        if (available.length < 2) {
+          setMessage("Not enough students are here to make groups.", "error");
+          return;
+        }
+
+        const sizes = computeGroupSizes(available.length, groupClass.preferredSize);
+        if (!sizes.length || Math.min(...sizes) < 2) {
+          setMessage("These students cannot be grouped without leaving one student alone.", "error");
+          return;
+        }
+
+        const groups = generateBalancedGroups(available, groupClass.preferredSize);
+        groupClass.currentGroups = groups;
+        updatePairHistory(groups);
+
+        groupClass.history.push({
+          timestamp: new Date().toISOString(),
+          preferredSize: groupClass.preferredSize,
+          groups
+        });
+
+        if (groupClass.history.length > 100) {
+          groupClass.history = groupClass.history.slice(-100);
+        }
+
+        saveState();
+        renderGroups();
+        renderHistory();
+        setMessage("Groups are ready.", "success");
+      }
+
+      function bindEvents() {
+        els.createClassBtn.addEventListener("click", createClass);
+        els.renameClassBtn.addEventListener("click", renameClass);
+        els.deleteClassBtn.addEventListener("click", deleteClass);
+
+        els.newClassInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") createClass();
+        });
+
+        els.classSelect.addEventListener("change", () => {
+          switchClass(els.classSelect.value);
+        });
+
+        els.addBtn.addEventListener("click", addParticipant);
+        els.nameInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") addParticipant();
+        });
+
+        els.groupSize.addEventListener("change", () => {
+          const groupClass = getCurrentClass();
+          if (!groupClass) return;
+          groupClass.preferredSize = Number(els.groupSize.value);
+          saveState();
+        });
+
+        els.generateBtn.addEventListener("click", generateGroups);
+        els.clearParticipantsBtn.addEventListener("click", clearParticipants);
+        els.resetHistoryBtn.addEventListener("click", resetHistory);
+        els.clearCurrentBtn.addEventListener("click", clearCurrentGroups);
+
+        els.participantsList.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+
+          const action = target.getAttribute("data-action");
+          const index = Number(target.getAttribute("data-index"));
+          if (!action || Number.isNaN(index)) return;
+
+          if (action === "edit") editParticipant(index);
+          if (action === "delete") deleteParticipant(index);
+          if (action === "toggle-absent") toggleAbsent(index);
+        });
+      }
+
+      function init() {
+        loadState();
+        bindEvents();
+        renderAll();
+        setMessage("Ready.", "info");
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
