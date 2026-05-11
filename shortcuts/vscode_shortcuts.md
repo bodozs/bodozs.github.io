@@ -51,8 +51,11 @@
 
 | Hotkey | Function             |
 | :----: | :------------------- |
-|  ⌘`P`  | open file palette    |
-|  ⌘`T`  | open symbols palette |
+|  ⌘`P`  | open file palette  - search for file names  |
+|  ⌘`P @`  | search for symbol in the currently opened file (same as ⌘`T`)  |
+|  ⌘`P #`  | search for symbol in all files    |
+|  ⌘`P %`  | search for text across files    |
+|  ⌘`T`  | open symbols palette - search for symbol in all files  |
 
 ## Navigating back and forth
 
