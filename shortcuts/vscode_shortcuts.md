@@ -52,6 +52,7 @@
 | Hotkey | Function             |
 | :----: | :------------------- |
 |  ⌘`P`  | open file palette  - search for file names  |
+|  ⌘`P ?`  | get help on the searh options |
 |  ⌘`P @`  | search for symbol in the currently opened file (same as ⌘`T`)  |
 |  ⌘`P #`  | search for symbol in all files    |
 |  ⌘`P %`  | search for text across files    |
