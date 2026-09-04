@@ -58,6 +58,8 @@
 |  ⌘`P %`  | search for text across files    |
 |  ⌘`T`  | open symbols palette - search for symbol in all files  |
 |  ^R    | recently opened files or workspaces |
+|  ^-    | go back (Moves the cursor to the previous location in your navigation history.) |
+|  ^⇧-    | go forward (opposite as go back) |
 
 ## Navigating back and forth
 
