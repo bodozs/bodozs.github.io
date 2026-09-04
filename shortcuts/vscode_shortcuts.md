@@ -57,6 +57,7 @@
 |  ⌘`P #`  | search for symbol in all files    |
 |  ⌘`P %`  | search for text across files    |
 |  ⌘`T`  | open symbols palette - search for symbol in all files  |
+|  ^R    | recently opened files or workspaces |
 
 ## Navigating back and forth
 
